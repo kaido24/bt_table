@@ -14,5 +14,6 @@ You may read more about manual installation at http://docs.ckeditor.com/#!/guide
 
 ## Other Bootstrap 3 software for CKEditor
 Bootstrap 3 Quicktable https://github.com/kaido24/btquicktable
+
 Bootstrap 3 grid https://github.com/kaido24/btgrid
 
