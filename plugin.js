@@ -4,7 +4,7 @@
  */
 
 CKEDITOR.plugins.add( 'bt_table', {
-  requires: 'dialog',
+  requires: 'dialog,table',
   icons: 'table', // %REMOVE_LINE_CORE%
   hidpi: true, // %REMOVE_LINE_CORE%
     init: function( editor ) {
@@ -74,5 +74,5 @@ CKEDITOR.plugins.add( 'bt_table', {
         });
       }
     }
-  } 
+  }
 );
