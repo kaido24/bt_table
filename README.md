@@ -4,7 +4,7 @@ This plugin is built on top original table plugin. This is really 80% same code 
 
 It will just replace some original table plugin functionality and adds Bootstrap 3 options.
 
-#Installation
+##Installation
 
 Add this plugin to CKEditor folder/plugins
 
