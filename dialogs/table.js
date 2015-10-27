@@ -4,7 +4,6 @@
  */
 
 (function() {
-  var defaultToPixel = CKEDITOR.tools.cssLength;
 
   var commitValue = function(data) {
     //console.lo
@@ -46,6 +45,9 @@
   }
 
   function tableDialog(editor, command) {
+    var lang = editor.lang.table;
+    var btLang = editor.lang.bt_table;
+
     var makeElement = function(name) {
       return new CKEDITOR.dom.element(name, editor.document);
     };
@@ -55,7 +57,7 @@
     var dialogadvtab = editor.plugins.dialogadvtab;
 
     return {
-      title: editor.lang.table.title,
+      title: lang.title,
       minWidth: 310,
       minHeight: CKEDITOR.env.ie ? 310 : 280,
 
@@ -94,10 +96,6 @@
           rowsInput && rowsInput.enable();
           colsInput && colsInput.enable();
         }
-
-        // Call the onChange method for the width field so
-        // this get reflected into the Advanced tab.
-      //  widthInput && widthInput.onChange();
       },
       onOk: function() {
       //  console.log('onOk: react on table insertion/change');
@@ -245,7 +243,7 @@
       },
       contents: [{
           id: 'info',
-          label: editor.lang.table.title,
+          label: lang.title,
           elements: [{
             type: 'hbox',
             widths: [null, null],
@@ -257,10 +255,10 @@
                 type: 'text',
                 id: 'txtRows',
                 'default': 3,
-                label: editor.lang.table.rows,
+                label: lang.rows,
                 required: true,
                 controlStyle: 'width:5em',
-                validate: validatorNum(editor.lang.table.invalidRows),
+                validate: validatorNum(lang.invalidRows),
                 setup: function(selectedElement) {
                   this.setValue(selectedElement.$.rows.length);
                 },
@@ -269,10 +267,10 @@
                 type: 'text',
                 id: 'txtCols',
                 'default': 2,
-                label: editor.lang.table.columns,
+                label: lang.columns,
                 required: true,
                 controlStyle: 'width:5em',
-                validate: validatorNum(editor.lang.table.invalidCols),
+                validate: validatorNum(lang.invalidCols),
                 setup: function(selectedTable) {
                   this.setValue(tableColumns(selectedTable));
                 },
@@ -285,12 +283,12 @@
                 id: 'selHeaders',
                 requiredContent: 'th',
                 'default': '',
-                label: editor.lang.table.headers,
+                label: lang.headers,
                 items: [
-                  [editor.lang.table.headersNone, ''],
-                  [editor.lang.table.headersRow, 'row'],
-                  [editor.lang.table.headersColumn, 'col'],
-                  [editor.lang.table.headersBoth, 'both']
+                  [lang.headersNone, ''],
+                  [lang.headersRow, 'row'],
+                  [lang.headersColumn, 'col'],
+                  [lang.headersBoth, 'both']
                 ],
                 setup: function(selectedTable) {
                   // Fill in the headers field.
@@ -314,14 +312,6 @@
                     this.setValue(dialog.hasColumnHeaders ? 'col' : '');
                 },
                 commit: commitValue
-              },
-              {
-                type: 'html',
-                id: 'txtBorder',
-                html: '&nbsp;',
-                commit: function() {
-                  // We can remove it after changing the name of this plugin.
-                }
               }
             ]
             }, {
@@ -334,7 +324,7 @@
                 {
                   type: 'checkbox',
                   id: 'tableStriped',
-                  label: 'Add stripes',
+                  label: btLang.addStripes,
                   'default': '',
                   setup: function(selectedTable) {
                     var val = selectedTable.hasClass('table-striped');
@@ -344,7 +334,7 @@
                 }, {
                   type: 'checkbox',
                   id: 'tableHover',
-                  label: 'Add hover effect',
+                  label: btLang.addHover,
                   'default': '',
                   setup: function(selectedTable) {
                     var val = selectedTable.hasClass('table-hover');
@@ -354,7 +344,7 @@
                 }, {
                   type: 'checkbox',
                   id: 'tableBordered',
-                  label: 'Add borders',
+                  label: btLang.addBorders,
                   'default': '',
                   setup: function(selectedTable) {
                     var val = selectedTable.hasClass('table-bordered');
@@ -365,7 +355,7 @@
                 }, {
                   type: 'checkbox',
                   id: 'tableCondensed',
-                  label: 'Compact style table',
+                  label: btLang.compactStyle,
                   'default': '',
                   setup: function(selectedTable) {
                   this.enable();
@@ -383,7 +373,7 @@
               type: 'text',
               id: 'txtCaption',
               requiredContent: 'caption',
-              label: editor.lang.table.caption,
+              label: lang.caption,
               setup: function(selectedTable) {
                 this.enable();
 
